@@ -92,7 +92,7 @@ for i in range(len(xd['Login'])):
         st.write(q.columns[0]) 
         def insert(option,q):
           cursor = conn.cursor()
-          cursor.execute("INSERT INTO '{needed_sheet}'" + cont_prefix + " VALUES (?)", (cont_prefix+temp,))
+          cursor.execute("INSERT INTO "{needed_sheet}" "cont_prefix" VALUES (?)", (cont_prefix+temp,))
           # Commit the changes and close the connection
           conn.commit()
           conn.close()
