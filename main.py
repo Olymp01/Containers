@@ -51,7 +51,7 @@ for i in range(len(xd['Login'])):
         st.write(q)
         token = xd['Token'][i]
         st.write('Префикс: ',token)
-        option = st.selectbox('Выбрать контейнер', options.values())
+        option = st.selectbox('Выбрать контейнер', options.keys())
         cont_prefix = options.get(option)   
         st.write(option,':',cont_prefix)
         number = st.number_input('Введите количество пробирок', min_value=0, step=1)
@@ -65,7 +65,7 @@ for i in range(len(xd['Login'])):
             else:
                 return str('0000000000')
             
-        last = len(q[option])-1
+        last = len(q[option.value])-1
         while(pd.isnull(q[option][last])==True or q[option][last] == ''):
             last = last - 1
             if last < 0:
