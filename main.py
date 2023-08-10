@@ -48,11 +48,11 @@ for i in range(len(xd['Login'])):
         needed_sheet = auth(str(xd['Worksheet'][i]))
         rows2 = run_query(f'SELECT * FROM "{needed_sheet}"')
         q = pd.DataFrame(rows2)
-        st.write(q)
         token = xd['Token'][i]
         st.write('Префикс: ',token)
         option = st.selectbox('Выбрать контейнер', options.keys())
         cont_prefix = options.get(option)   
+        st.write(q[cont_prefix])     
         st.write(option,':',cont_prefix)
         number = st.number_input('Введите количество пробирок', min_value=0, step=1)
         st.write(number)
