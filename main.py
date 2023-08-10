@@ -74,6 +74,7 @@ for i in range(len(xd['Login'])):
                 coeff = 3
     
         last_pref = int('1'+((str(q[cont_prefix][last]))[3:]))
+        lst = []      
         for i in range(1, number+1):
             temp = str(last_pref + i)[1:]
             lst.append(cont_prefix + temp)
