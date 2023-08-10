@@ -51,7 +51,7 @@ for i in range(len(xd['Login'])):
         st.write(q)
         token = xd['Token'][i]
         st.write('Префикс: ',token)
-        option = st.selectbox('Выбрать контейнер', options.keys())
+        option = st.selectbox('Выбрать контейнер', options.values())
         cont_prefix = options.get(option)   
         st.write(option,':',cont_prefix)
         number = st.number_input('Введите количество пробирок', min_value=0, step=1)
