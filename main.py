@@ -43,7 +43,7 @@ xd = pd.DataFrame(rows)
 st.write(xd)
 
 def auth(sheet_url,new_gid):
-    return sheet_url.replace("gid=0","gid="+new_gid)
+    return sheet_url.replace("gid=0","gid="+str(new_gid))
     
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
