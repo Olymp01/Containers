@@ -90,9 +90,10 @@ for i in range(len(xd['Login'])):
            processed_data = output.getvalue()
            return processed_data
         st.write(q.columns[0]) 
-        def insert(option,q):
+              
+        def insert(cont_prefix,q):
           cursor = conn.cursor()
-          cursor.execute(f'INSERT INTO "{needed_sheet}" "cont_prefix" VALUES (?)', (cont_prefix+temp,))
+          cursor.execute(f'INSERT INTO "{needed_sheet}" "cont_prefix" VALUES (?)', (cont_prefix+temp))
           # Commit the changes and close the connection
           conn.commit()
           conn.close()
@@ -100,7 +101,7 @@ for i in range(len(xd['Login'])):
         def run_cap():
             cap_button = st.button("Подтвердить") # Give button a variable name
             if cap_button: # Make button a condition.
-                insert(option,q)
+                insert(cont_prefix,q)
                 st.text("Успешно внедрено")
                 now = datetime.now()
                 dt_string = now.strftime("%d.%m.%Y(%H-%M-%S)")
