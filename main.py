@@ -39,8 +39,8 @@ def run_query(query):
     
 sheet_url = st.secrets["private_gsheets_url"]
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
-df = pd.DataFrame(rows)
-st.write(df)
+xd = pd.DataFrame(rows)
+st.write(xd)
 
 def auth(sheet_url,new_gid):
     return sheet_url.replace("gid=0","gid="+new_gid)
