@@ -28,7 +28,7 @@ st.write(df)
 def auth(sheet_url,new_gid):
     return sheet_url.replace("gid=0","gid="+new_gid)
 
-st.set_page_config(page_title = 'Контейнеры')
+#st.set_page_config(page_title = 'Контейнеры')
 st.header('Распечатка штрихкодов для контейнеров/пробирок')
 log_name = st.text_input('Имя')
 log_title = st.text_input('Логин')
