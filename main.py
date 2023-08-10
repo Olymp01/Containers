@@ -65,7 +65,7 @@ for i in range(len(xd['Login'])):
             else:
                 return str('0000000000')
             
-        last = len(q[option.value])-1
+        last = len(q[option.value()])-1
         while(pd.isnull(q[option][last])==True or q[option][last] == ''):
             last = last - 1
             if last < 0:
