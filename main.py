@@ -4,6 +4,7 @@ from io import BytesIO
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2 import service_account
+from openpyxl import load_workbook
 from datetime import datetime
 import gsheetsdb
 from gsheetsdb import connect
@@ -21,7 +22,7 @@ def run_query(query):
     rows = rows.fetchall()
     return rows
 
-sheet_url = (st.secrets["private_gsheets_url"])[1]
+sheet_url = st.secrets["private_gsheets_url"]
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
 st.write(rows)
 
