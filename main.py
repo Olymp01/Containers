@@ -43,11 +43,11 @@ xd = pd.DataFrame(rows)
 st.write(xd)
 
 def auth(sheet_url,new_gid):
-    return sheet_url.replace("gid=0","gid="+str(new_gid))
+    return sheet_url.replace("gid=0","gid="+new_gid)
     
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
-        needed_sheet = auth(sheet_url,xd['Worksheet'][i])
+        needed_sheet = auth(str(sheet_url),str(xd['Worksheet'][i]))
         rows = run_query(f'SELECT * FROM "{needed_sheet}"')
         df2 = pd.DataFrame(rows)
         st.write(df2)
