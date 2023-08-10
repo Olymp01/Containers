@@ -25,7 +25,7 @@ rows = run_query(f'SELECT * FROM "{sheet_url}"')
 df = pd.DataFrame(rows)
 st.write(df)
 
-def auth(sheet_url,new_gid)
+def auth(sheet_url,new_gid):
     return sheet_url.replace("gid=0","gid="+new_gid)
 
 st.set_page_config(page_title = 'Контейнеры')
