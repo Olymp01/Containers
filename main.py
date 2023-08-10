@@ -25,6 +25,5 @@ def run_query(query):
 sheet_url = st.secrets["private_gsheets_url"]
 workbook = load_workbook(sheet_url, data_only=True)
 second_sheet = workbook.worksheets[1]
-rows2 = run_query(f'SELECT * FROM "{second_sheet}"')
-df = pd.DataFrame(rows2)
-st.write(df)
+cell_value = second_sheet['A1'].value
+st.write(cell_value)
