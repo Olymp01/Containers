@@ -81,3 +81,40 @@ for i in range(len(xd['Login'])):
         df = pd.DataFrame()
         df[option] = lst
         st.write(df)
+
+        def to_excel(df):
+           output = BytesIO()
+           writer = pd.ExcelWriter(output, engine='openpyxl')
+           df.to_excel(writer, index=False, sheet_name='Sheet1') 
+           writer.close()
+           processed_data = output.getvalue()
+           return processed_data
+         
+        def insert(option,q):
+            
+            cell_row = last + coeff
+            cell_column = int(cont_prefix[1:])  
+            cell = sheet2.cell(cell_row, cell_column)
+            cell.value = lst[len(lst)-1]
+            sheet2.update_cells([cell])
+            sheet3 = client.open('Containers').get_worksheet(worksheet_number)
+            asd_sheet = sheet3.get_all_records()
+            headers = asd_sheet.pop(0)
+            a = pd.DataFrame(asd_sheet, columns=headers)
+            st.write(a)
+            
+        def run_cap():
+            cap_button = st.button("Подтвердить") # Give button a variable name
+            if cap_button: # Make button a condition.
+                insert(option,q)
+                st.text("Успешно внедрено")
+                now = datetime.now()
+                dt_string = now.strftime("%d.%m.%Y(%H-%M-%S)")
+                df_xlsx = to_excel(df)
+                st.download_button(label='📥 Скачать готовый файл',
+                                                 data = df_xlsx ,
+                                                 file_name= dt_string+'_'+option+'_'+log_title+'_'+log_name+'.xlsx')       
+        run_cap()   
+        
+        
+    
