@@ -13,7 +13,7 @@ scope = [
     'https://www.googleapis.com/auth/drive.file'
     ]
 file_name = 'https://github.com/Olymp01/Containers/blob/main/client_key.json'
-creds = ServiceAccountCredentials.from_json_keyfile_name(file_name,scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets[""],scope)
 client = gspread.authorize(creds)
 
 sheet = client.open('Containers').get_worksheet(0)
