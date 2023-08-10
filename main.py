@@ -89,20 +89,10 @@ for i in range(len(xd['Login'])):
            writer.close()
            processed_data = output.getvalue()
            return processed_data
-         
+        st.write(q.headers[0]) 
         def insert(option,q):
-            
-            cell_row = last + coeff
-            cell_column = int(cont_prefix[1:])  
-            cell = sheet2.cell(cell_row, cell_column)
-            cell.value = lst[len(lst)-1]
-            sheet2.update_cells([cell])
-            sheet3 = client.open('Containers').get_worksheet(worksheet_number)
-            asd_sheet = sheet3.get_all_records()
-            headers = asd_sheet.pop(0)
-            a = pd.DataFrame(asd_sheet, columns=headers)
-            st.write(a)
-            
+            q[cont_prefix]
+                  
         def run_cap():
             cap_button = st.button("Подтвердить") # Give button a variable name
             if cap_button: # Make button a condition.
