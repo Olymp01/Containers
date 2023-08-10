@@ -8,23 +8,15 @@ from datetime import datetime
 import gsheetsdb
 from gsheetsdb import connect
 
+scope = [
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/drive.file'
+    ]
 credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=[
-        "https://www.googleapis.com/auth/spreadsheets",
-    ],
-)
-conn = connect(credentials=credentials)
-        
-def run_query(query):
-    rows = conn.execute(query, headers=1)
-    rows = rows.fetchall()
-    return rows
-
-sheet_url = st.secrets["private_gsheets_url"]
-rows = run_query(f'SELECT * FROM "{sheet_url}"')
-
-# Print results.
-for row in rows:
-    st.write(f"{row.name}")
-
+    st.secrets["gcp_service_account"], scope)
+client = gspread.authorize(creds)
+sheet = client.open('Containers').get_worksheet(0)
+python_sheet = sheet.get_all_records()
+headers = python_sheet.pop(0)
+xd = pd.DataFrame(python_sheet, columns=headers)
+st.write(xd)
