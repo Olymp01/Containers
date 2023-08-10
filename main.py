@@ -91,7 +91,11 @@ for i in range(len(xd['Login'])):
            return processed_data
         st.write(q.columns[0]) 
         def insert(option,q):
-            q[cont_prefix]
+          cursor = conn.cursor()
+          cursor.execute("INSERT INTO '{needed_sheet}'" + cont_prefix + " VALUES (?)", (cont_prefix+temp,))
+          # Commit the changes and close the connection
+          conn.commit()
+          conn.close()
                   
         def run_cap():
             cap_button = st.button("Подтвердить") # Give button a variable name
