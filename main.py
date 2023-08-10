@@ -40,18 +40,15 @@ def run_query(query):
 sheet_url = st.secrets["private_gsheets_url"]
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
 xd = pd.DataFrame(rows)
-st.write(xd)
-st.write(st.secrets["private_gsheets_url"])
 def auth(new_gid):
     return str(st.secrets["private_gsheets_url"]).replace("gid=0","gid="+str(new_gid))
     
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
         needed_sheet = auth(str(xd['Worksheet'][i]))
-        st.write(needed_sheet)
         rows2 = run_query(f'SELECT * FROM "{needed_sheet}"')
-        df2 = pd.DataFrame(rows2)
-        st.write(df2)
+        q = pd.DataFrame(rows2)
+        st.write(q)
         token = xd['Token'][i]
         st.write('Префикс: ',token)
         option = st.selectbox('Выбрать контейнер', options.keys())
@@ -61,4 +58,25 @@ for i in range(len(xd['Login'])):
         st.write(number)
         
         coeff = 4
-
+              
+        def zapoln(cont_prefix):
+            if cont_prefix in ('Z14','Z15','Z16','Z17','Z18'):
+                return str('0000000')
+            else:
+                return str('0000000000')
+            
+        last = len(q[option])-1
+        while(pd.isnull(q[option][last])==True or q[option][last] == ''):
+            last = last - 1
+            if last < 0:
+                last = last + 1 
+                q[option][last] = cont_prefix + zapoln(cont_prefix)
+                coeff = 3
+    
+        last_pref = int('1'+((str(q[option][last]))[3:]))
+        for i in range(1, number+1):
+            temp = str(last_pref + i)[1:]
+            lst.append(cont_prefix + temp)
+        df = pd.DataFrame()
+        df[option] = lst
+        st.write(df)
