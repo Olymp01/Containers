@@ -13,7 +13,7 @@ scope = [
     'https://www.googleapis.com/auth/drive.file'
     ]
 creds = service_account.Credentials.from_service_account_info(
-    (st.secrets["gcp_service_account"]), scope)
+    (st.secrets["gcp_service_account"]), scope,)
 client = gspread.authorize(creds)
 sheet = client.open('Containers').get_worksheet(0)
 python_sheet = sheet.get_all_records()
