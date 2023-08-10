@@ -23,8 +23,11 @@ def run_query(query):
     return rows
 
 sheet_url = st.secrets["private_gsheets_url"]
+workbook = load_workbook(sheet_url, data_only=True)
+second_sheet = workbook.worksheets[1]
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
 st.write(rows)
-
+rows2 = run_query(f'SELECT * FROM "{second_sheet}"')
+st.write(rows2)
 df = pd.DataFrame(rows)
 st.write(df)
