@@ -42,12 +42,12 @@ rows = run_query(f'SELECT * FROM "{sheet_url}"')
 xd = pd.DataFrame(rows)
 st.write(xd)
 
-def auth(sheet_url,new_gid):
-    return str(sheet_url).replace("gid=0","gid="+str(new_gid))
+def auth(new_gid):
+    return str(st.secrets["private_gsheets_url"]).replace("gid=0","gid="+str(new_gid))
     
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
-        needed_sheet = auth(str(sheet_url),str(xd['Worksheet'][i]))
+        needed_sheet = auth(str(xd['Worksheet'][i]))
         rows = run_query(f'SELECT * FROM "{needed_sheet}"')
         df2 = pd.DataFrame(rows)
         st.write(df2)
