@@ -89,7 +89,7 @@ for i in range(len(xd['Login'])):
            writer.close()
            processed_data = output.getvalue()
            return processed_data
-        st.write(q.headers[0]) 
+        st.write(q.columns[0]) 
         def insert(option,q):
             q[cont_prefix]
                   
