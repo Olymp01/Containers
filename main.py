@@ -4,6 +4,7 @@ from io import BytesIO
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
+import gsheetsdb
 from gsheetsdb import connect
 
 credentials = service_account.Credentials.from_service_account_info(
