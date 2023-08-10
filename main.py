@@ -78,5 +78,5 @@ for i in range(len(xd['Login'])):
             temp = str(last_pref + i)[1:]
             lst.append(cont_prefix + temp)
         df = pd.DataFrame()
-        df[cont_prefix] = lst
+        df[option] = lst
         st.write(df)
