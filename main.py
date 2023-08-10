@@ -22,7 +22,7 @@ def run_query(query):
     rows = rows.fetchall()
     return rows
 sheet_url = st.secrets["private_gsheets_url"]
-st.write(sheet_url)
+st.write(sheet_url+'466')
 rows = run_query(f'SELECT * FROM "{sheet_url}"')
 df = pd.DataFrame(rows)
 st.write(df)
