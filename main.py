@@ -43,9 +43,8 @@ options = {'Пробирка со средой Кэри Блера':'Z01','Пр�
     
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
-        needed_sheet = auth(str(xd['Worksheet'][i]))
-        rows2 = run_query(f'SELECT * FROM "{needed_sheet}"')
-        q = pd.DataFrame(rows2)
+        q = (load_data(st.secrets["private_gsheets_url"],xd['Login'][i]))
+        st.write(q)
         token = xd['Token'][i]
         st.write('Префикс: ',token)
         option = st.selectbox('Выбрать контейнер', options.keys())
