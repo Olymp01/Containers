@@ -123,7 +123,7 @@ for i in range(len(xd['Login'])):
                 
                 print("Current date and time in Kazakhstan:", kazakhstan_time)
                 #now = datetime.now()
-                dt_string = kazakhstan_time.strftime("%d.%m.%Y(%(H+6)-%M-%S)")
+                dt_string = kazakhstan_time.strftime("%d.%m.%Y(%(H-%M-%S)")
                 df_xlsx = to_excel(df)
                 st.download_button(label='📥 Скачать готовый файл',
                                                  data = df_xlsx ,
