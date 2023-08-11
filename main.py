@@ -28,7 +28,7 @@ def load_data(url, sheet_name="Autorization"):
     sh = client.open_by_url(url)
     df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
     return df
-load_data(["private_gsheets_url"])
+load_data("https://docs.google.com/spreadsheets/d/1o_zRwbTMxrI-MTYS3nL76TY2L8W_2cKGBLGzH5vMPuA/edit?pli=1#gid=0")
 
 st.set_page_config(page_title='Контейнеры', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
 st.header('Распечатка штрихкодов для контейнеров/пробирок')
