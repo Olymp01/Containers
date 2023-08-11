@@ -89,14 +89,14 @@ for i in range(len(xd['Login'])):
            writer.close()
            processed_data = output.getvalue()
            return processed_data
-        st.write(q.columns[0]) 
+        
 
         def insert_query(query):
            rows = conn.execute(query, headers=1)
            rows = rows.fetchall()
            return rows
               
-        query = f'SELECT * from "{needed_sheet}"'
+        query = f'INSERT INTO "{needed_sheet}" ("{q.columns[0]}") VALUES (5)'
 
                   
         def run_cap():
