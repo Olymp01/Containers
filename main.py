@@ -116,7 +116,7 @@ for i in range(len(xd['Login'])):
                 kazakhstan_timezone = pytz.timezone('Asia/Almaty')
                 
                 # Get the current UTC time
-                utc_now = datetime.datetime.utcnow()
+                utc_now = datetime.utcnow()
                 
                 # Convert UTC time to Kazakhstan time
                 kazakhstan_time = utc_now.astimezone(kazakhstan_timezone)
