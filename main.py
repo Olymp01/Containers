@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 from io import BytesIO
 import gspread
-from oauth2client.service_account import Credentials
+from google.oauth2.service_account import Credentials
 from google.oauth2 import service_account
 from openpyxl import load_workbook
 from datetime import datetime
