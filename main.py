@@ -112,7 +112,7 @@ for i in range(len(xd['Login'])):
                 insert()
                 st.text("Успешно внедрено")
                 now = datetime.now()
-                dt_string = now.strftime("%d.%m.%Y(%H+6-%M-%S)")
+                dt_string = now.strftime("%d.%m.%Y(%(H+6)-%M-%S)")
                 df_xlsx = to_excel(df)
                 st.download_button(label='📥 Скачать готовый файл',
                                                  data = df_xlsx ,
