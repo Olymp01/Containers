@@ -47,7 +47,8 @@ options = {'Пробирка со средой Кэри Блера':'Z01','Пр�
 # Действия после успешной авторизации
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
-        sheet2 = client.open('Containers').get_worksheet(xd['Worksheet'][i])
+        worksheet_number = xd['Worksheet'][i]
+        sheet2 = client.open('Containers').get_worksheet(worksheet_number)
         asd_sheet = sheet2.get_all_records()
         headers = asd_sheet.pop(0)
         q = pd.DataFrame(asd_sheet, columns=headers)
