@@ -68,15 +68,15 @@ for i in range(len(xd['Login'])):
             else:
                 return str('0000000000')
             
-        last = len(q[option])-1
-        while(pd.isnull(q[option][last])==True or q[option][last] == ''):
+        last = len(q[cont_prefix])-1
+        while(pd.isnull(q[cont_prefix][last])==True or q[cont_prefix][last] == ''):
             last = last - 1
             if last < 0:
                 last = last + 1 
-                q[option][last] = cont_prefix + zapoln(cont_prefix)
+                q[cont_prefix][last] = cont_prefix + zapoln(cont_prefix)
                 coeff = 3
     
-        last_pref = int('1'+((str(q[option][last]))[3:]))
+        last_pref = int('1'+((str(q[cont_prefix][last]))[3:]))
         for i in range(1, number+1):
             temp = str(last_pref + i)[1:]
             lst.append(cont_prefix + temp)
