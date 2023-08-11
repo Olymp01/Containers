@@ -58,12 +58,13 @@ for i in range(len(xd['Login'])):
         option = st.selectbox('Выбрать контейнер', options.keys())
         cont_prefix = options.get(option) 
         last = len(q[cont_prefix])-1
-        
+        coeff = 4
         def zapoln(cont_prefix):
             if cont_prefix in ('Z14','Z15','Z16','Z17','Z18'):
                 return str('0000000')
             else:
                 return str('0000000000')
+                
         while(pd.isnull(q[cont_prefix][last])==True or q[cont_prefix][last] == ''):
             last = last - 1
             if last < 0:
@@ -76,13 +77,6 @@ for i in range(len(xd['Login'])):
         number = st.number_input('Введите количество пробирок', min_value=0, step=1)
         st.write(number)
         
-        coeff = 4
-        
-        
-            
-        
-        
-    
         last_pref = int('1'+((str(q[cont_prefix][last]))[3:]))
         for i in range(1, number+1):
             temp = str(last_pref + i)[1:]
