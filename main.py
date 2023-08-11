@@ -105,7 +105,8 @@ for i in range(len(xd['Login'])):
             asd_sheet = sheet3.get_all_records()
             headers = asd_sheet.pop(0)
             a = pd.DataFrame(asd_sheet, columns=headers)
-            st.write(a[cont_prefix])
+            st.write(a)
+            #st.write(a[cont_prefix])
             
         def run_cap():
             cap_button = st.button("Подтвердить") 
