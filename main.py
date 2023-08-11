@@ -9,6 +9,11 @@ from datetime import datetime
 import gsheetsdb
 from gsheetsdb import connect
 
+st.set_page_config(page_title='Контейнеры', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
+st.header('Распечатка штрихкодов для контейнеров/пробирок')
+log_name = st.text_input('Имя')
+log_title = st.text_input('Логин')
+log_pass = st.text_input('Пароль') 
 scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
 ]
@@ -30,11 +35,6 @@ def load_data(url, sheet_name="Autorization"):
     return df
 load_data("https://docs.google.com/spreadsheets/d/1o_zRwbTMxrI-MTYS3nL76TY2L8W_2cKGBLGzH5vMPuA/edit?pli=1#gid=0")
 
-st.set_page_config(page_title='Контейнеры', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
-st.header('Распечатка штрихкодов для контейнеров/пробирок')
-log_name = st.text_input('Имя')
-log_title = st.text_input('Логин')
-log_pass = st.text_input('Пароль') 
 
 options = {'Пробирка со средой Кэри Блера':'Z01','Пробирка со средой Эймса':'Z02', 'Уреазный тест(выдыхаемый воздух)':'Z03', 'Пробирка с желтой крышкой (ЦФДА)':'Z04',
           'Зеленая крышка без геля':'Z05','Конверт с ватной палочкой':'Z06','Баночка для кала':'Z07','Стерильный контейнер для мочи':'Z08',
