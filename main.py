@@ -112,6 +112,7 @@ for i in range(len(xd['Login'])):
             cap_button = st.button("Подтвердить") 
             if cap_button: 
                 insert()
+                st.text("Изменения сохранены!")
                 st.text("Номер последнего штрих-кода: "+cont_prefix+temp + "успешно добавлено в таблицу!")
                 # Specify the time zone for Kazakhstan (Almaty Time Zone)
                 kazakhstan_timezone = pytz.timezone('Asia/Almaty')
