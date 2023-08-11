@@ -6,6 +6,7 @@ from google.oauth2.service_account import Credentials
 from google.oauth2 import service_account
 from openpyxl import load_workbook
 from datetime import datetime
+import pytz
 
 scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -111,8 +112,18 @@ for i in range(len(xd['Login'])):
             if cap_button: 
                 insert()
                 st.text("Успешно внедрено")
-                now = datetime.now()
-                dt_string = now.strftime("%d.%m.%Y(%(H+6)-%M-%S)")
+                # Specify the time zone for Kazakhstan (Almaty Time Zone)
+                kazakhstan_timezone = pytz.timezone('Asia/Almaty')
+                
+                # Get the current UTC time
+                utc_now = datetime.datetime.utcnow()
+                
+                # Convert UTC time to Kazakhstan time
+                kazakhstan_time = utc_now.astimezone(kazakhstan_timezone)
+                
+                print("Current date and time in Kazakhstan:", kazakhstan_time)
+                #now = datetime.now()
+                dt_string = now.kazakhstan_time("%d.%m.%Y(%(H+6)-%M-%S)")
                 df_xlsx = to_excel(df)
                 st.download_button(label='📥 Скачать готовый файл',
                                                  data = df_xlsx ,
