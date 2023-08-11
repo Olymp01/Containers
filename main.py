@@ -9,6 +9,27 @@ from datetime import datetime
 import gsheetsdb
 from gsheetsdb import connect
 
+scopes = [
+    "https://www.googleapis.com/auth/spreadsheets",
+]
+
+skey = st.secrets["gcp_service_account"]
+credentials = Credentials.from_service_account_info(
+    skey,
+    scopes=scopes,
+)
+client = gspread.authorize(credentials)
+
+
+# Perform SQL query on the Google Sheet.
+# Uses st.cache_data to only rerun when the query changes or after 10 min.
+@st.cache_data(ttl=600)
+def load_data(url, sheet_name="Transactions"):
+    sh = client.open_by_url(url)
+    df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
+    return df
+load_data(["private_gsheets_url"])
+
 st.set_page_config(page_title='Контейнеры', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
 st.header('Распечатка штрихкодов для контейнеров/пробирок')
 log_name = st.text_input('Имя')
