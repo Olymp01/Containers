@@ -15,6 +15,8 @@ log_title = st.text_input('Логин')
 log_pass = st.text_input('Пароль') 
 scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
+    'https://www.googleapis.com/auth/drive',
+    'https://www.googleapis.com/auth/drive.file'
 ]
 
 skey = st.secrets["gcp_service_account"]
