@@ -33,7 +33,7 @@ def load_data(url, sheet_name="Autorization"):
     sh = client.open_by_url(url)
     df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
     return df
-load_data("https://docs.google.com/spreadsheets/d/1o_zRwbTMxrI-MTYS3nL76TY2L8W_2cKGBLGzH5vMPuA/edit?pli=1#gid=0")
+st.write(load_data("https://docs.google.com/spreadsheets/d/1o_zRwbTMxrI-MTYS3nL76TY2L8W_2cKGBLGzH5vMPuA/edit?pli=1#gid=0"))
 
 
 options = {'Пробирка со средой Кэри Блера':'Z01','Пробирка со средой Эймса':'Z02', 'Уреазный тест(выдыхаемый воздух)':'Z03', 'Пробирка с желтой крышкой (ЦФДА)':'Z04',
