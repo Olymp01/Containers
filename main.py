@@ -53,12 +53,12 @@ for i in range(len(xd['Login'])):
         asd_sheet = sheet2.get_all_records()
         headers = asd_sheet.pop(0)
         q = pd.DataFrame(asd_sheet, columns=headers)
-        st.write(q)
         token = xd['Token'][i]
         st.write('Префикс: ',token)
         option = st.selectbox('Выбрать контейнер', options.keys())
         cont_prefix = options.get(option)   
         st.write(option,':',cont_prefix)
+        st.write(q[cont_prefix])
         number = st.number_input('Введите количество пробирок', min_value=0, step=1)
         st.write(number)
         
@@ -105,7 +105,7 @@ for i in range(len(xd['Login'])):
             asd_sheet = sheet3.get_all_records()
             headers = asd_sheet.pop(0)
             a = pd.DataFrame(asd_sheet, columns=headers)
-            st.write(a)
+            st.write(a[cont_prefix])
             
         def run_cap():
             cap_button = st.button("Подтвердить") 
