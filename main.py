@@ -7,12 +7,6 @@ from google.oauth2 import service_account
 from openpyxl import load_workbook
 from datetime import datetime
 
-
-#st.set_page_config(page_title='Контейнеры', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
-#st.header('Распечатка штрихкодов для контейнеров/пробирок')
-log_name = st.text_input('Имя')
-log_title = st.text_input('Логин')
-log_pass = st.text_input('Пароль') 
 scopes = [
     "https://www.googleapis.com/auth/spreadsheets",
     'https://www.googleapis.com/auth/drive',
