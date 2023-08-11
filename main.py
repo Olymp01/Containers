@@ -93,8 +93,7 @@ for i in range(len(xd['Login'])):
            processed_data = output.getvalue()
            return processed_data
          
-        def insert(option,q):
-            
+        def insert():
             cell_row = last + coeff
             cell_column = int(cont_prefix[1:])  
             cell = sheet2.cell(cell_row, cell_column)
@@ -109,7 +108,7 @@ for i in range(len(xd['Login'])):
         def run_cap():
             cap_button = st.button("Подтвердить") 
             if cap_button: 
-                insert_query(query)
+                insert()
                 st.text("Успешно внедрено")
                 now = datetime.now()
                 dt_string = now.strftime("%d.%m.%Y(%H-%M-%S)")
