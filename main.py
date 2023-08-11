@@ -96,12 +96,12 @@ for i in range(len(xd['Login'])):
            rows = rows.fetchall()
            return rows
               
-        query = f'INSERT INTO "{needed_sheet}" VALUES ("{cont_prefix+temp}")'
+        query = f'SELECT * from "{needed_sheet}"'
 
                   
         def run_cap():
-            cap_button = st.button("Подтвердить") # Give button a variable name
-            if cap_button: # Make button a condition.
+            cap_button = st.button("Подтвердить") 
+            if cap_button: 
                 insert_query(query)
                 st.text("Успешно внедрено")
                 now = datetime.now()
