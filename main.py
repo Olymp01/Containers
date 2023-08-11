@@ -24,6 +24,11 @@ credentials = Credentials.from_service_account_info(
 )
 client = gspread.authorize(credentials)
 
+sheet = client.open('Containers').get_worksheet(0)
+python_sheet = sheet.get_all_records()
+headers = python_sheet.pop(0)
+fq = pd.DataFrame(python_sheet, columns=headers)
+st.write(fq)
 def load_data(url, sheet_name):
     sh = client.open_by_url(url)
     df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
@@ -88,12 +93,18 @@ for i in range(len(xd['Login'])):
            return processed_data
         
 
-        def insert_query(query):
-           rows = conn.execute(query, headers=1)
-           rows = rows.fetchall()
-           return rows
-              
-        query = f'INSERT INTO "{needed_sheet}" ("{q.columns[0]}") VALUES (5)'
+        def insert(option,q):
+            
+            cell_row = last + coeff
+            cell_column = int(cont_prefix[1:])  
+            cell = sheet2.cell(cell_row, cell_column)
+            cell.value = lst[len(lst)-1]
+            sheet2.update_cells([cell])
+            sheet3 = client.open('Containers').get_worksheet(worksheet_number)
+            asd_sheet = sheet3.get_all_records()
+            headers = asd_sheet.pop(0)
+            a = pd.DataFrame(asd_sheet, columns=headers)
+            st.write(a)
 
                   
         def run_cap():
