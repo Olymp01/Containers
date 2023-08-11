@@ -24,7 +24,6 @@ sheet = client.open('Containers').get_worksheet(0)
 python_sheet = sheet.get_all_records()
 headers = python_sheet.pop(0)
 xd = pd.DataFrame(python_sheet, columns=headers)
-st.write(xd)
 
 st.set_page_config(page_title = 'Контейнеры')
 st.header('Распечатка штрихкодов для контейнеров/пробирок')
@@ -48,8 +47,7 @@ options = {'Пробирка со средой Кэри Блера':'Z01','Пр�
 # Действия после успешной авторизации
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
-        worksheet_number = xd['Worksheet'][i]
-        sheet2 = client.open('Containers').get_worksheet(1)
+        sheet2 = client.open('Containers').get_worksheet(xd['Worksheet'][i])
         asd_sheet = sheet2.get_all_records()
         headers = asd_sheet.pop(0)
         q = pd.DataFrame(asd_sheet, columns=headers)
