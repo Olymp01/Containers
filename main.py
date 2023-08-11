@@ -90,19 +90,19 @@ for i in range(len(xd['Login'])):
            processed_data = output.getvalue()
            return processed_data
         st.write(q.columns[0]) 
+
+        def insert_query(query):
+           rows = conn.execute(query, headers=1)
+           rows = rows.fetchall()
+           return rows
               
-        def insert(cont_prefix,q):
-          cursor = conn.cursor()
-          query = f'INSERT INTO "{needed_sheet}" VALUES ("{cont_prefix+temp}")'
-          cursor.execute(query)
-          # Commit the changes and close the connection
-          conn.commit()
-          conn.close()
+        query = f'INSERT INTO "{needed_sheet}" VALUES ("{cont_prefix+temp}")'
+
                   
         def run_cap():
             cap_button = st.button("Подтвердить") # Give button a variable name
             if cap_button: # Make button a condition.
-                insert(cont_prefix,q)
+                insert_query(query)
                 st.text("Успешно внедрено")
                 now = datetime.now()
                 dt_string = now.strftime("%d.%m.%Y(%H-%M-%S)")
