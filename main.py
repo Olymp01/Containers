@@ -6,8 +6,7 @@ from google.oauth2.service_account import Credentials
 from google.oauth2 import service_account
 from openpyxl import load_workbook
 from datetime import datetime
-import gsheetsdb
-from gsheetsdb import connect
+
 
 st.set_page_config(page_title='Контейнеры', page_icon=None, layout="centered", initial_sidebar_state="auto", menu_items=None)
 st.header('Распечатка штрихкодов для контейнеров/пробирок')
@@ -25,16 +24,13 @@ credentials = Credentials.from_service_account_info(
 )
 client = gspread.authorize(credentials)
 
-
-# Perform SQL query on the Google Sheet.
-# Uses st.cache_data to only rerun when the query changes or after 10 min.
-@st.cache_data(ttl=600)
-def load_data(url, sheet_name="Autorization"):
+def load_data(url, sheet_name):
     sh = client.open_by_url(url)
     df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
     return df
-st.write(load_data(st.secrets["private_gsheets_url"]))
-
+    
+xd = (load_data(st.secrets["private_gsheets_url"],"Autorization"))
+st.write(xd)
 
 options = {'Пробирка со средой Кэри Блера':'Z01','Пробирка со средой Эймса':'Z02', 'Уреазный тест(выдыхаемый воздух)':'Z03', 'Пробирка с желтой крышкой (ЦФДА)':'Z04',
           'Зеленая крышка без геля':'Z05','Конверт с ватной палочкой':'Z06','Баночка для кала':'Z07','Стерильный контейнер для мочи':'Z08',
@@ -44,25 +40,6 @@ options = {'Пробирка со средой Кэри Блера':'Z01','Пр�
            'Тест полоска(тест антиген)':'Z22','Квантиферон 4 вакутейнера':'Z23','Перианальный соскоб(ректально)':'Z28','Пробирка "Streck" (trisomnia)':'Z29',
            'Соскоб ПЦР на коронавирус':'Z30','Микоплаза':'Z31','Фильтр-карта':'Z32'
           }
-
-credentials = service_account.Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=[
-        "https://www.googleapis.com/auth/spreadsheets",
-    ],
-)
-conn = connect(credentials=credentials)
-
-def run_query(query):
-    rows = conn.execute(query, headers=1)
-    rows = rows.fetchall()
-    return rows
-    
-sheet_url = st.secrets["private_gsheets_url"]
-rows = run_query(f'SELECT * FROM "{sheet_url}"')
-xd = pd.DataFrame(rows)
-def auth(new_gid):
-    return str(st.secrets["private_gsheets_url"]).replace("gid=0","gid="+str(new_gid))
     
 for i in range(len(xd['Login'])):
     if log_title == xd['Login'][i] and log_pass == xd['Password'][i]:
