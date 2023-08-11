@@ -56,9 +56,10 @@ for i in range(len(xd['Login'])):
         token = xd['Token'][i]
         st.write('Префикс: ',token)
         option = st.selectbox('Выбрать контейнер', options.keys())
-        cont_prefix = options.get(option)   
+        cont_prefix = options.get(option) 
+        last = len(q[cont_prefix])-1
         st.write(option,':',cont_prefix)
-        st.write(q[cont_prefix])
+        st.text("Номер последнего штрих-кода: "+q[cont_prefix][last])
         number = st.number_input('Введите количество пробирок', min_value=0, step=1)
         st.write(number)
         
@@ -70,7 +71,7 @@ for i in range(len(xd['Login'])):
             else:
                 return str('0000000000')
             
-        last = len(q[cont_prefix])-1
+        
         while(pd.isnull(q[cont_prefix][last])==True or q[cont_prefix][last] == ''):
             last = last - 1
             if last < 0:
